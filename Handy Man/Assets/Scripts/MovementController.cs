@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     Rigidbody2D rb;
+    SpriteRenderer renderer;
     //public float fsalto;
     public float velocidad=1;
     /*bool isGrounded;
@@ -12,7 +13,6 @@ public class MovementController : MonoBehaviour
     public LayerMask suelo;
     public float radiogrounded;
     public bool left;*/
-    private bool facechange;
     //public int fuerzaretro;
     //public bool salto;
     Animator anim;
@@ -20,6 +20,7 @@ public class MovementController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        renderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         //left = false;
         anim = GetComponent<Animator>();
@@ -30,15 +31,18 @@ public class MovementController : MonoBehaviour
     void Update()
     {
         if (Input.GetKey(KeyCode.A))
-        {
-            rb.velocity += new Vector2(-velocidad, 0f);
+        {            
+            if (rb.velocity.magnitude < 4)
+            {
+                rb.velocity += new Vector2(-velocidad * Time.deltaTime, 0f);
+            }
 
             if (anim.GetBool("Walk") == false)
             {
                 anim.SetBool("Walk", true);
             }
-            facechange = true;
-
+            renderer.flipX = true;
+            
             /*if (!left)
             {
                 left = true;
@@ -55,13 +59,17 @@ public class MovementController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.D))
         {
-            rb.velocity += new Vector2(velocidad, 0f);
+            if (rb.velocity.magnitude < 4)
+            {
+                rb.velocity += new Vector2(velocidad * Time.deltaTime, 0f);
+            }
 
             if (anim.GetBool("Walk") == false)
             {
                 anim.SetBool("Walk", true);
             }
-            facechange = false;
+            renderer.flipX = false;
+
         }
 
         if (!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
@@ -105,10 +113,11 @@ public class MovementController : MonoBehaviour
             salto = true;
         }*/
 
-        if (facechange)
+        /*if (facechange)
         {
             transform.Rotate(0f, 180f, 0f);
-        }
+            facechange = false;
+        }*/
 
 
     }
