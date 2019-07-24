@@ -34,7 +34,7 @@ public class MovementController : MonoBehaviour
         {            
             if (rb.velocity.magnitude < 4)
             {
-                rb.velocity += new Vector2(-velocidad * Time.deltaTime, 0f);
+                rb.velocity += new Vector2(-velocidad * Time.timeScale, 0f);
             }
 
             if (anim.GetBool("Walk") == false)
@@ -61,7 +61,7 @@ public class MovementController : MonoBehaviour
         {
             if (rb.velocity.magnitude < 4)
             {
-                rb.velocity += new Vector2(velocidad * Time.deltaTime, 0f);
+                rb.velocity += new Vector2(velocidad * Time.timeScale, 0f);
             }
 
             if (anim.GetBool("Walk") == false)
@@ -74,6 +74,7 @@ public class MovementController : MonoBehaviour
 
         if (!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
         {
+            rb.velocity = new Vector2(0f, 0f);
             anim.SetBool("Walk", false);
         }
 
