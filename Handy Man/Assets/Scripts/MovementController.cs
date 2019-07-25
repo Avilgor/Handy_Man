@@ -24,7 +24,7 @@ public class MovementController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         ground = true;
-        right = false;
+        right = true;
     }
 
  
@@ -42,6 +42,11 @@ public class MovementController : MonoBehaviour
                 rb.velocity -= new Vector2(velocity * Time.timeScale, 0f);
             }
 
+            if (anim.GetBool("Idle") == true)
+            {
+                anim.SetBool("Idle", false);
+            }
+
             if (anim.GetBool("Walk") == false)
             {
                 anim.SetBool("Walk", true);
@@ -57,6 +62,11 @@ public class MovementController : MonoBehaviour
                 rb.velocity += new Vector2(velocity * Time.timeScale, 0f);
             }
 
+            if (anim.GetBool("Idle") == true)
+            {
+                anim.SetBool("Idle", false);
+            }
+
             if (anim.GetBool("Walk") == false)
             {
                 anim.SetBool("Walk", true);
@@ -67,6 +77,8 @@ public class MovementController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && ground)
         {
+            anim.SetBool("Walk", false);
+            anim.SetBool("Idle", false);
             if (right)
             {
                 rb.velocity = new Vector2(4f, jumpForce * Time.timeScale);
@@ -75,8 +87,8 @@ public class MovementController : MonoBehaviour
             {
                 rb.velocity = new Vector2(-4f, jumpForce * Time.timeScale);
             }
-            anim.SetBool("Walk", false);
-            anim.SetTrigger("Jump");
+            anim.Play("Jump");
+            //anim.SetTrigger("Jump");
             ground = false;            
         }
 
@@ -85,9 +97,10 @@ public class MovementController : MonoBehaviour
             rb.velocity = new Vector2(0f, 0f);
         }
 
-        if (rb.velocity.x == 0)
+        if (rb.velocity.magnitude == 0)
         {           
             anim.SetBool("Walk", false);
+            anim.SetBool("Idle", true);
         }
     }
 
