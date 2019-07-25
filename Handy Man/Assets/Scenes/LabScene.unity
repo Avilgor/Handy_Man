@@ -667,9 +667,9 @@ Light:
     m_Resolution: 1
     m_CustomResolution: -1
     m_Strength: 1
-    m_Bias: 0.19
-    m_NormalBias: 0.15
-    m_NearPlane: 0.1
+    m_Bias: 0.13
+    m_NormalBias: 0.27
+    m_NearPlane: 1
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -931,7 +931,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 7cdf7db014a3e344d836789b409676d6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5807
+      value: -1.713
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7cdf7db014a3e344d836789b409676d6,
         type: 3}
@@ -941,7 +941,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 7cdf7db014a3e344d836789b409676d6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.99
+      value: 1.8097
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7cdf7db014a3e344d836789b409676d6,
         type: 3}
@@ -986,12 +986,17 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 7cdf7db014a3e344d836789b409676d6,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.1372252
+      value: 2.3295755
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7cdf7db014a3e344d836789b409676d6,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.9311523
+      value: 3.194956
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 7cdf7db014a3e344d836789b409676d6,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.09
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cdf7db014a3e344d836789b409676d6, type: 3}
@@ -1100,6 +1105,11 @@ PrefabInstance:
     - target: {fileID: -2416733968201007103, guid: 6410fa5267f14fc43b72f3aa733975a1,
         type: 3}
       propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2416733968201007103, guid: 6410fa5267f14fc43b72f3aa733975a1,
+        type: 3}
+      propertyPath: m_DynamicOccludee
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2534866581884222612, guid: 6410fa5267f14fc43b72f3aa733975a1,
