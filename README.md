@@ -1,4 +1,4 @@
-# Handy_Man
+# Handyman
 
 
 # Collaborators
@@ -6,3 +6,4 @@
 - https://github.com/viicmoor
 - https://github.com/PapaSocrates
 - https://github.com/acetaku
+- https://github.com/Adri27m
