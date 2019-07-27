@@ -36,7 +36,12 @@ public class MovementController : MonoBehaviour
             rb.velocity -= new Vector2(0f, 1f * Time.timeScale);
         }*/
 
-        if (Input.GetKey(KeyCode.A) && ground && move)
+        if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && ground)
+        {
+            rb.velocity = new Vector2(0f, 0f);
+        }
+
+        else if (Input.GetKey(KeyCode.A) && ground && move && !Input.GetKey(KeyCode.D))
         {
             if (rb.velocity.x > -4)
             {
@@ -56,7 +61,7 @@ public class MovementController : MonoBehaviour
             right = false;
         }
 
-        if (Input.GetKey(KeyCode.D) && ground && move)
+        else if (Input.GetKey(KeyCode.D) && ground && move && !Input.GetKey(KeyCode.A))
         {
             if (rb.velocity.x < 4)
             {
@@ -76,6 +81,30 @@ public class MovementController : MonoBehaviour
             right = true;
         }
 
+
+
+        else if (Input.GetKey(KeyCode.D) && !ground && move)
+        {
+            if (rb.velocity.x < 4)
+            {
+                rb.velocity += new Vector2(velocity * Time.timeScale, 0f);
+            }
+
+            renderer.flipX = false;
+            right = true;
+        }
+
+        else if (Input.GetKey(KeyCode.A) && !ground && move)
+        {
+            if (rb.velocity.x > -4)
+            {
+                rb.velocity -= new Vector2(velocity * Time.timeScale, 0f);
+            }
+
+            renderer.flipX = true;
+            right = false;
+        }
+
         if (Input.GetKey(KeyCode.Space) && ground && move)
         {
             anim.SetBool("Walk", false);
@@ -92,10 +121,6 @@ public class MovementController : MonoBehaviour
             ground = false;            
         }
 
-        if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && ground)
-        {
-            rb.velocity = new Vector2(0f, 0f);
-        }
 
         if (rb.velocity.magnitude == 0 && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && ground)
         {           
