@@ -8,7 +8,7 @@ public class MovementController : MonoBehaviour
     SpriteRenderer renderer;
     float velocity=1f,jumpForce=7f;
     public bool ground;
-    private bool right, move;
+    private bool move;
     /*public Transform groundcheck;
     public LayerMask suelo;
     public float radiogrounded;
@@ -24,7 +24,6 @@ public class MovementController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         ground = true;
-        right = true;
         move = true;
     }
 
@@ -58,7 +57,6 @@ public class MovementController : MonoBehaviour
                 anim.SetBool("Walk", true);
             }
             renderer.flipX = true;
-            right = false;
         }
 
         else if (Input.GetKey(KeyCode.D) && ground && move && !Input.GetKey(KeyCode.A))
@@ -78,7 +76,6 @@ public class MovementController : MonoBehaviour
                 anim.SetBool("Walk", true);
             }
             renderer.flipX = false;
-            right = true;
         }
 
 
@@ -89,9 +86,7 @@ public class MovementController : MonoBehaviour
             {
                 rb.velocity += new Vector2(velocity * Time.timeScale, 0f);
             }
-
             renderer.flipX = false;
-            right = true;
         }
 
         else if (Input.GetKey(KeyCode.A) && !ground && move)
@@ -100,23 +95,14 @@ public class MovementController : MonoBehaviour
             {
                 rb.velocity -= new Vector2(velocity * Time.timeScale, 0f);
             }
-
             renderer.flipX = true;
-            right = false;
         }
 
-        if (Input.GetKey(KeyCode.Space) && ground && move)
+        if (Input.GetKey(KeyCode.Space) && ground)
         {
             anim.SetBool("Walk", false);
             anim.SetBool("Idle", false);
-            if (right)
-            {
-                rb.velocity = new Vector2(4f, jumpForce * Time.timeScale);
-            }
-            else
-            {
-                rb.velocity = new Vector2(-4f, jumpForce * Time.timeScale);
-            }
+            rb.AddForce(new Vector2(0f, jumpForce * Time.timeScale),ForceMode2D.Impulse);
             anim.Play("Jump");
             ground = false;            
         }
