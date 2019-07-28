@@ -11,4 +11,12 @@ public class PlayerCollisions : MonoBehaviour
             GetComponent<MovementController>().ground = true;
         }
     }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            GetComponent<MovementController>().ground = false;
+        }
+    }
 }

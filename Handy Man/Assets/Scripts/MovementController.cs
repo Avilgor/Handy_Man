@@ -31,7 +31,7 @@ public class MovementController : MonoBehaviour
     {
         /*if (ground==false)
         {
-            rb.velocity -= new Vector2(0f, 1f * Time.timeScale);
+            rb.velocity -= new Vector2(0f, 0.02f * Time.timeScale);
         }*/
 
         if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && ground)
@@ -140,16 +140,14 @@ public class MovementController : MonoBehaviour
             StartCoroutine(Wait(0.5f));
         }
 
-        if (rb.velocity.y < 0 && !ground)
+        /*if (rb.velocity.y < 0 && !ground)
         {
             rb.gravityScale = 2.7f;
         }
         else if (rb.velocity.y >= 0 && !ground)
         {
             rb.gravityScale = 1f;
-        }
-
-
+        }*/
     }
 
     IEnumerator Wait(float time)
