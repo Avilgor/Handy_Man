@@ -80,7 +80,7 @@ public class MovementController : MonoBehaviour
 
 
 
-        else if (Input.GetKey(KeyCode.D) && !ground && move)
+        else if (Input.GetKey(KeyCode.D) && !ground && move && !Input.GetKey(KeyCode.A))
         {
             if (rb.velocity.x < 4)
             {
@@ -89,7 +89,7 @@ public class MovementController : MonoBehaviour
             renderer.flipX = false;
         }
 
-        else if (Input.GetKey(KeyCode.A) && !ground && move)
+        else if (Input.GetKey(KeyCode.A) && !ground && move &&!Input.GetKey(KeyCode.D))
         {
             if (rb.velocity.x > -4)
             {
@@ -98,7 +98,7 @@ public class MovementController : MonoBehaviour
             renderer.flipX = true;
         }
 
-        if (Input.GetKey(KeyCode.Space) && ground)
+        if (Input.GetKey(KeyCode.Space) && ground || Input.GetKey(KeyCode.W) && ground)
         {
             anim.SetBool("Walk", false);
             anim.SetBool("Idle", false);
