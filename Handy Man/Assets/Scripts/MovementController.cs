@@ -23,11 +23,10 @@ public class MovementController : MonoBehaviour
         renderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        ground = true;
         move = true;
     }
 
- 
+
     void Update()
     {
         /*if (ground==false)
@@ -89,7 +88,7 @@ public class MovementController : MonoBehaviour
             renderer.flipX = false;
         }
 
-        else if (Input.GetKey(KeyCode.A) && !ground && move &&!Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.A) && !ground && move && !Input.GetKey(KeyCode.D))
         {
             if (rb.velocity.x > -4)
             {
@@ -102,14 +101,14 @@ public class MovementController : MonoBehaviour
         {
             anim.SetBool("Walk", false);
             anim.SetBool("Idle", false);
-            rb.AddForce(new Vector2(0f, jumpForce * Time.timeScale),ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(0f, jumpForce * Time.timeScale), ForceMode2D.Impulse);
             anim.Play("Jump");
-            ground = false;            
+            ground = false;
         }
 
 
         if (rb.velocity.magnitude == 0 && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && ground)
-        {           
+        {
             anim.SetBool("Walk", false);
             anim.SetBool("Idle", true);
         }
@@ -140,6 +139,17 @@ public class MovementController : MonoBehaviour
             anim.SetBool("Repair", false);
             StartCoroutine(Wait(0.5f));
         }
+
+        if (rb.velocity.y < 0 && !ground)
+        {
+            rb.gravityScale = 2.7f;
+        }
+        else if (rb.velocity.y >= 0 && !ground)
+        {
+            rb.gravityScale = 1f;
+        }
+
+
     }
 
     IEnumerator Wait(float time)

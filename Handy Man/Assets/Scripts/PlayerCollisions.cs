@@ -8,7 +8,7 @@ public class PlayerCollisions : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            GetComponent<MovementController>().ground = true;          
+            GetComponent<MovementController>().ground = true;
         }
     }
 }
