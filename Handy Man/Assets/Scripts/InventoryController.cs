@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class InventoryController : MonoBehaviour
 {
-    Slot []slots = new Slot[3];
+    [SerializeField]
+    Image []slots;
     [SerializeField]
     Sprite []tools;
     /*
@@ -14,41 +15,71 @@ public class InventoryController : MonoBehaviour
      * 2 = destornillador
      */
 
+    private bool[]slotsUsed;
 
     void Start()
     {
-        tools = Resources.LoadAll<Sprite>("tool");
+        slotsUsed = new bool[slots.Length];
+        for (int a = 0; a < slotsUsed.Length; ++a)
+        {
+            slotsUsed[a] = false;
+        }
     }
 
     public void AddInv(string tool)
     {
-        GameObject newTool = new GameObject();
-        newTool.AddComponent<SpriteRenderer>();
+        int i = 0;
+
         switch (tool)
         {
             case "Wrench":
-                newTool.GetComponent<SpriteRenderer>().sprite = tools[0];
+                do
+                {
+                    if (slotsUsed[i] == false)
+                    {
+                        slots[i].sprite = tools[0];
+                        slotsUsed[i] = true;
+                        i = 3;
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                } while (i < slotsUsed.Length);
+                
                 break;
             case "Hammer":
-                newTool.GetComponent<SpriteRenderer>().sprite = tools[1];
+                do
+                {
+                    if (slotsUsed[i] == false)
+                    {
+                        slots[i].sprite = tools[1];
+                        slotsUsed[i] = true;
+                        i = 3;
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                } while (i < slotsUsed.Length);
                 break;
             case "Screwdriver":
-                newTool.GetComponent<SpriteRenderer>().sprite = tools[2];
+                do
+                {
+                    if (slotsUsed[i] == false)
+                    {
+                        slots[i].sprite = tools[2];
+                        slotsUsed[i] = true;
+                        i = 3;
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                } while (i < slotsUsed.Length);              
                 break;
         }
 
-        int i = 0;
-        do
-        {
-            if (slots[i] != null)
-            {
-                //newTool.transform.position = slots[i].transform.position;
-                i = 3;
-            }
-            else
-            {
-                i++;
-            }
-        } while (i<3);
+        
     }
 }
