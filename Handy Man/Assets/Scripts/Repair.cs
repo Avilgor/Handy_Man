@@ -9,6 +9,7 @@ public class Repair : MonoBehaviour
     public Slider repairBar;
     public bool repairFinish;
     public bool load;
+    public float progress;
     
     void Start()
     {
@@ -16,14 +17,15 @@ public class Repair : MonoBehaviour
         repairBar.value = 0;
         repairFinish = false;
         load = false;
+        progress = 0;
     }
 
-    void update()
+    void Update()
     {
         if (load == true)
         {
-            repairBar.value += 0.05f;
-            repairFinish = true;
+            progress += 0.001f;
+            repairBar.value = progress;
         }
 
         if (repairBar.value >= 1)

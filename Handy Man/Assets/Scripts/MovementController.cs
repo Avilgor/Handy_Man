@@ -7,7 +7,7 @@ public class MovementController : MonoBehaviour
     Rigidbody2D rb;
     SpriteRenderer renderer;
     float velocity=1f,jumpForce=7f;
-    public bool ground;
+    public bool ground,repairZone;
     private bool move;
     /*public Transform groundcheck;
     public LayerMask suelo;
@@ -24,10 +24,11 @@ public class MovementController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         move = true;
+        repairZone = false;
     }
 
 
-    void FixedUpdate()
+    void Update()
     {
         /*if (ground==false)
         {
@@ -113,7 +114,7 @@ public class MovementController : MonoBehaviour
             anim.SetBool("Idle", true);
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && ground)
+        if (Input.GetKey(KeyCode.E) && ground)
         {
             rb.velocity = new Vector2(0f, 0f);
             move = false;
@@ -127,23 +128,32 @@ public class MovementController : MonoBehaviour
             {
                 anim.SetBool("Walk", false);
             }
-            //anim.StopPlayback();
-            //anim.Play("Repair");
+
+            if (repairZone == true && GetComponent<Repair>().repairFinish == false)
+            {
+                GetComponent<Repair>().load = true;
+            }
+
             anim.SetBool("Repair", true);
         }
 
-        //Temporal
         if (Input.GetKeyUp(KeyCode.E) && ground)
         {
-            //anim.StopPlayback();
             anim.SetBool("Repair", false);
+            GetComponent<Repair>().load = false;
             if (GetComponent<Repair>().repairFinish == true)
             {
+                Debug.Log("Repair finished");
                 GetComponent<Repair>().repairBar.value = 0;
+                GetComponent<Repair>().progress = 0;
+                GetComponent<Repair>().repairFinish = false;
             }
             else
             {
+                Debug.Log("Repair unfinished");
                 GetComponent<Repair>().repairBar.value = 0;
+                GetComponent<Repair>().progress = 0;
+                GetComponent<Repair>().repairFinish = false;
             }
             StartCoroutine(Wait(0.5f));
         }
@@ -163,15 +173,4 @@ public class MovementController : MonoBehaviour
         yield return new WaitForSeconds(time);
         move = true;
     }
-
-    /*private void FixedUpdate()
-    {
-        isGrounded = Physics2D.OverlapCircle(groundcheck.position, radiogrounded, suelo);
-
-        if (salto)
-        {
-            rb.AddForce(new Vector2(0, fsalto), ForceMode2D.Impulse);
-            salto = false;
-        }
-    }*/
 }
