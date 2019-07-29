@@ -83,7 +83,7 @@ public class MovementController : MonoBehaviour
         {
             if (rb.velocity.x < 4)
             {
-                rb.velocity += new Vector2(velocity * Time.timeScale, 0f);
+                rb.velocity += new Vector2((velocity/2) * Time.timeScale, 0f);
             }
             renderer.flipX = false;
         }
@@ -92,7 +92,7 @@ public class MovementController : MonoBehaviour
         {
             if (rb.velocity.x > -4)
             {
-                rb.velocity -= new Vector2(velocity * Time.timeScale, 0f);
+                rb.velocity -= new Vector2((velocity / 2) * Time.timeScale, 0f);
             }
             renderer.flipX = true;
         }
