@@ -10,6 +10,12 @@ public class PlayerCollisions : MonoBehaviour
         {
             GetComponent<MovementController>().ground = true;
         }
+
+        if (collision.gameObject.tag == "Tool")
+        {
+            GetComponent<InventoryController>().AddInv(collision.gameObject.name);
+            Destroy(collision.gameObject);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
