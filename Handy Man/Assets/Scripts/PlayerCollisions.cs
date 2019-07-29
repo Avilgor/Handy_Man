@@ -14,7 +14,7 @@ public class PlayerCollisions : MonoBehaviour
         if (collision.gameObject.tag == "Tool")
         {
             GetComponent<InventoryController>().AddInv(collision.gameObject.name);
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
         }
     }
 

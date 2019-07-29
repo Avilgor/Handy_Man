@@ -78,8 +78,11 @@ public class InventoryController : MonoBehaviour
                     }
                 } while (i < slotsUsed.Length);              
                 break;
-        }
+        }  
+    }
 
+    public void RemoveInv(string tool)
+    {
         
     }
 }

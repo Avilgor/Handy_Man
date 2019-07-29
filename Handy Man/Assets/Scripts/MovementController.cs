@@ -27,7 +27,7 @@ public class MovementController : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         /*if (ground==false)
         {
@@ -137,6 +137,14 @@ public class MovementController : MonoBehaviour
         {
             //anim.StopPlayback();
             anim.SetBool("Repair", false);
+            if (GetComponent<Repair>().repairFinish == true)
+            {
+                GetComponent<Repair>().repairBar.value = 0;
+            }
+            else
+            {
+                GetComponent<Repair>().repairBar.value = 0;
+            }
             StartCoroutine(Wait(0.5f));
         }
 
