@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-enum Cars
+enum Cars2
 {
     Micro = 1,
     Sedan,
@@ -35,8 +35,7 @@ public class ScrollList : MonoBehaviour
     void Start()
     {
         rnd = new System.Random();
-        generateJob(); generateJob(); generateJob();
-        scrollView.verticalNormalizedPosition = 1;
+        //scrollView.verticalNormalizedPosition = 1;
     }
 
     public void generateJob()
@@ -44,7 +43,7 @@ public class ScrollList : MonoBehaviour
         GameObject item = Instantiate(prefab);
         item.transform.SetParent(content.transform,false);
 
-        item.GetComponent<Job>().NewJob(Enum.GetName(typeof(Cars), rnd.Next(1, 17)), rnd.Next(1, 10) / 1000, rnd.Next(15, 30) * 10);
+        item.GetComponent<Job>().NewJob(Enum.GetName(typeof(Cars2), rnd.Next(1, 17)), rnd.Next(1, 10) / 1000, rnd.Next(15, 30) * 10);
         item.GetComponent<Job>().showValues();
     }
 }

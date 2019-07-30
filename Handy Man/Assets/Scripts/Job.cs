@@ -24,7 +24,7 @@ public class Job : MonoBehaviour
     public void showValues()
     {
         carTxt.text = "Car type: " + Car;
-        rewardTxt.text = "Reward: " + reward.ToString() + "points.";
+        rewardTxt.text = "Reward: " + reward.ToString() + " points.";
     }
 
     public string getCar() { return Car; }

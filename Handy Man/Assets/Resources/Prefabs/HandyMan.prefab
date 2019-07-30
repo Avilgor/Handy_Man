@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 890210909}
   - component: {fileID: 890210916}
   - component: {fileID: 9019419031491729113}
+  - component: {fileID: 494729588}
   m_Layer: 0
   m_Name: HandyMan
   m_TagString: Player
@@ -133,7 +134,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.8, y: 6}
+  m_Size: {x: 2.6, y: 6.3}
   m_EdgeRadius: 0
 --- !u!50 &5759581198408044795
 Rigidbody2D:
@@ -169,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ground: 0
+  repairZone: 0
 --- !u!114 &890210909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,6 +215,26 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  tools:
+  - {fileID: 21300000, guid: 9be979ffecab7da45abecca0aeade8ed, type: 3}
+  - {fileID: 21300000, guid: a26c6b9bc7d8b0d478d9b4153f434e8b, type: 3}
+  - {fileID: 21300000, guid: 602bc94cf5c6ae041bbe9e1ef40c3fa1, type: 3}
+--- !u!114 &494729588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5759581198408044792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 875d02ec64b05b34ea4b09189ed7ea94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  repairBar: {fileID: 0}
+  repairFinish: 0
+  load: 0
+  progress: 0
 --- !u!1 &5759581198478927177
 GameObject:
   m_ObjectHideFlags: 0

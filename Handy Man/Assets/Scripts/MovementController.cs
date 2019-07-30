@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MovementController : MonoBehaviour
-{
+{    
     Rigidbody2D rb;
     SpriteRenderer renderer;
     float velocity=1f,jumpForce=7f;
@@ -25,6 +25,7 @@ public class MovementController : MonoBehaviour
         anim = GetComponent<Animator>();
         move = true;
         repairZone = false;
+        Cursor.visible = false;
     }
 
 
