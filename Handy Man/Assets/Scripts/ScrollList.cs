@@ -30,11 +30,12 @@ public class ScrollList : MonoBehaviour
     public GameObject content;
     public GameObject prefab;
     private System.Random rnd;
-    Cars carList;
+    
 
     void Start()
     {
         rnd = new System.Random();
+        generateJob(); generateJob(); generateJob();
         scrollView.verticalNormalizedPosition = 1;
     }
 
@@ -43,11 +44,7 @@ public class ScrollList : MonoBehaviour
         GameObject item = Instantiate(prefab);
         item.transform.SetParent(content.transform,false);
 
-        float time = rnd.Next(1, 10) / 1000;
-        int reward = 10 - ((int)time * 1000);
-        reward = (reward * 75);
-
-        item.GetComponent<Job>().NewJob(Enum.GetName(typeof(Cars), rnd.Next(1, 17)), time,reward);
+        item.GetComponent<Job>().NewJob(Enum.GetName(typeof(Cars), rnd.Next(1, 17)), rnd.Next(1, 10) / 1000, rnd.Next(15, 30) * 10);
         item.GetComponent<Job>().showValues();
     }
 }
