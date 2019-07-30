@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\Camera.cs" />
      <Compile Include="Assets\Scripts\GroundCheckRaycast.cs" />
      <Compile Include="Assets\Scripts\InventoryController.cs" />
+     <Compile Include="Assets\Scripts\Job.cs" />
      <Compile Include="Assets\Scripts\MovementController.cs" />
      <Compile Include="Assets\Scripts\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\PlayerCollisions.cs" />
