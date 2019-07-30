@@ -1,22 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
-public class Job 
+public class Job : MonoBehaviour
 {
+    [SerializeField]
+    Text carTxt,rewardTxt;
+
     private string Car;
     private float time;
     private int reward;
-    private System.Random rnd;
 
-    public Job(string name)
+
+    public void NewJob(string name,float duration, int points)
     {
-        rnd = new System.Random();
         Car = name;
-        time = rnd.Next(1,10) / 1000;
-        reward = 10 - ((int)time * 1000);
-        reward = (reward * 75);
+        time = duration;
+        reward = points;
+    }
+
+    public void showValues()
+    {
+        carTxt.text = Car;
+        rewardTxt.text = reward.ToString();
     }
 
     public string getCar() { return Car; }
