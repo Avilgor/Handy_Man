@@ -132,7 +132,6 @@ public class MovementController : MonoBehaviour
 
             if (repairZone == true && GetComponent<JobController>().inJob == true)
             {
-                Debug.Log("Allow repairs");
                 GetComponent<Repair>().load = true;
             }
 

@@ -34,6 +34,7 @@ public class JobController : MonoBehaviour
     public GameObject prefab;
     public Text score;
     public GameObject progresBar;
+    public ParticleSystem finishParticles;
 
     public int Score;
     public bool inJob;
@@ -103,7 +104,7 @@ public class JobController : MonoBehaviour
     {
         if (gameObject.GetComponent<Repair>().repairFinish == true)
         {
-            Debug.Log("Repair finished");
+            finishParticles.Play();
             gameObject.GetComponent<Repair>().repairBar.value = 0f;
             gameObject.GetComponent<Repair>().progress = 0f;
             totalReward += currentReward;
@@ -116,7 +117,6 @@ public class JobController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Repair unfinished");
             gameObject.GetComponent<Repair>().repairBar.value = 0;
             gameObject.GetComponent<Repair>().progress = 0;
             gameObject.GetComponent<Repair>().repairFinish = false;

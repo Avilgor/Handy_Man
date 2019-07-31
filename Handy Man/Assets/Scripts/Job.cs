@@ -20,7 +20,6 @@ public class Job : MonoBehaviour
     {
         Car = name;
         time = duration;
-        Debug.Log(duration);
         reward = points;
         player = GameObject.FindGameObjectWithTag("Player");
     }
@@ -34,9 +33,7 @@ public class Job : MonoBehaviour
     public void acceptJob()
     {
         if (player.GetComponent<JobController>().inJob == false)
-        {
-            Debug.Log("Job assigned");
-            Debug.Log(time);          
+        {                   
             player.GetComponent<JobController>().currentReward = reward;
             player.GetComponent<JobController>().currentTime = time;
             player.GetComponent<JobController>().inJob = true;

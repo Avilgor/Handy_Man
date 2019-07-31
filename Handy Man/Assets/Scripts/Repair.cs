@@ -26,7 +26,6 @@ public class Repair : MonoBehaviour
     {
         if (load == true)
         {
-            Debug.Log("Reparing...");
             progress += progressScale;
             repairBar.value = progress;
         }
