@@ -33,6 +33,7 @@ public class JobController : MonoBehaviour
     public GameObject content;
     public GameObject prefab;
     public Text score;
+    public GameObject progresBar;
 
     public int Score;
     public bool inJob;
@@ -94,6 +95,7 @@ public class JobController : MonoBehaviour
         if (inJob == true)
         {
             gameObject.GetComponent<Repair>().progressScale = currentTime;
+            progresBar.SetActive(true);
         }
     }
 
@@ -102,14 +104,15 @@ public class JobController : MonoBehaviour
         if (gameObject.GetComponent<Repair>().repairFinish == true)
         {
             Debug.Log("Repair finished");
-            gameObject.GetComponent<Repair>().repairBar.value = 0;
-            gameObject.GetComponent<Repair>().progress = 0;
+            gameObject.GetComponent<Repair>().repairBar.value = 0f;
+            gameObject.GetComponent<Repair>().progress = 0f;
             totalReward += currentReward;
             currentReward = 0;
             currentTime = 0.001f;
             inJob = false;
             gameObject.GetComponent<Repair>().repairFinish = false;
             score.text = totalReward.ToString();
+            progresBar.SetActive(false);
         }
         else
         {
