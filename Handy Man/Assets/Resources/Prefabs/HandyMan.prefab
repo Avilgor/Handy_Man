@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 890210916}
   - component: {fileID: 9019419031491729113}
   - component: {fileID: 494729588}
+  - component: {fileID: 494729598}
   m_Layer: 0
   m_Name: HandyMan
   m_TagString: Player
@@ -235,6 +236,30 @@ MonoBehaviour:
   repairFinish: 0
   load: 0
   progress: 0
+  progressScale: 0
+--- !u!114 &494729598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5759581198408044792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0f6e3dfa7416846958562d9de48432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JobFolder: {fileID: 0}
+  JobIcon: {fileID: 0}
+  scrollView: {fileID: 0}
+  content: {fileID: 0}
+  prefab: {fileID: 7706077199470951711, guid: b516beceb90427d49816479e01d43754, type: 3}
+  score: {fileID: 0}
+  Score: 0
+  inJob: 0
+  currentTime: 0
+  currentReward: 0
+  totalReward: 0
 --- !u!1 &5759581198478927177
 GameObject:
   m_ObjectHideFlags: 0

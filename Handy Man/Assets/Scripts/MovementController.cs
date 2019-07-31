@@ -130,8 +130,9 @@ public class MovementController : MonoBehaviour
                 anim.SetBool("Walk", false);
             }
 
-            if (repairZone == true && GetComponent<Repair>().repairFinish == false)
+            if (repairZone == true && GetComponent<JobController>().inJob == true)
             {
+                Debug.Log("Allow repairs");
                 GetComponent<Repair>().load = true;
             }
 
@@ -142,20 +143,7 @@ public class MovementController : MonoBehaviour
         {
             anim.SetBool("Repair", false);
             GetComponent<Repair>().load = false;
-            if (GetComponent<Repair>().repairFinish == true)
-            {
-                Debug.Log("Repair finished");
-                GetComponent<Repair>().repairBar.value = 0;
-                GetComponent<Repair>().progress = 0;
-                GetComponent<Repair>().repairFinish = false;
-            }
-            else
-            {
-                Debug.Log("Repair unfinished");
-                GetComponent<Repair>().repairBar.value = 0;
-                GetComponent<Repair>().progress = 0;
-                GetComponent<Repair>().repairFinish = false;
-            }
+            GetComponent<JobController>().CheckJob();
             StartCoroutine(Wait(0.5f));
         }
 

@@ -32,6 +32,13 @@ public class JobController : MonoBehaviour
     public ScrollRect scrollView;
     public GameObject content;
     public GameObject prefab;
+    public Text score;
+
+    public int Score;
+    public bool inJob;
+    public float currentTime;
+    public int currentReward;
+    public int totalReward;
     private System.Random rnd;
     private int currentJobs;
     private float timeLapse;
@@ -42,6 +49,10 @@ public class JobController : MonoBehaviour
         generateJob(); generateJob();
         currentJobs = 2;
         timeLapse = 0;
+        inJob = false;
+        currentReward = 0;
+        currentTime = 0.001f;
+        totalReward = 0;
     }
 
     void Update()
@@ -79,6 +90,34 @@ public class JobController : MonoBehaviour
                 JobFolder.SetActive(false);
             }
         }
+
+        if (inJob == true)
+        {
+            gameObject.GetComponent<Repair>().progressScale = currentTime;
+        }
+    }
+
+    public void CheckJob()
+    {
+        if (gameObject.GetComponent<Repair>().repairFinish == true)
+        {
+            Debug.Log("Repair finished");
+            gameObject.GetComponent<Repair>().repairBar.value = 0;
+            gameObject.GetComponent<Repair>().progress = 0;
+            totalReward += currentReward;
+            currentReward = 0;
+            currentTime = 0.001f;
+            inJob = false;
+            gameObject.GetComponent<Repair>().repairFinish = false;
+            score.text = totalReward.ToString();
+        }
+        else
+        {
+            Debug.Log("Repair unfinished");
+            gameObject.GetComponent<Repair>().repairBar.value = 0;
+            gameObject.GetComponent<Repair>().progress = 0;
+            gameObject.GetComponent<Repair>().repairFinish = false;
+        }
     }
 
     public void generateJob()
@@ -86,7 +125,7 @@ public class JobController : MonoBehaviour
         GameObject item = Instantiate(prefab);
         item.transform.SetParent(content.transform, false);
 
-        item.GetComponent<Job>().NewJob(Enum.GetName(typeof(Cars), rnd.Next(1, 17)), rnd.Next(1, 10) / 1000, rnd.Next(15, 30) * 10);
+        item.GetComponent<Job>().NewJob(Enum.GetName(typeof(Cars), rnd.Next(1, 17)), (float)rnd.Next(1, 10) / 1000, rnd.Next(15, 30) * 10);
         item.GetComponent<Job>().showValues();
     }
 }

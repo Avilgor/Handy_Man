@@ -10,6 +10,7 @@ public class Repair : MonoBehaviour
     public bool repairFinish;
     public bool load;
     public float progress;
+    public float progressScale;
     
     void Start()
     {
@@ -18,13 +19,15 @@ public class Repair : MonoBehaviour
         repairFinish = false;
         load = false;
         progress = 0;
+        progressScale = 0.001f;
     }
 
     void Update()
     {
         if (load == true)
         {
-            progress += 0.001f;
+            Debug.Log("Reparing...");
+            progress += progressScale;
             repairBar.value = progress;
         }
 

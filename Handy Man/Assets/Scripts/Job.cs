@@ -8,6 +8,8 @@ public class Job : MonoBehaviour
 {
     [SerializeField]
     Text carTxt,rewardTxt;
+ 
+    GameObject player;
 
     private string Car;
     private float time;
@@ -18,13 +20,33 @@ public class Job : MonoBehaviour
     {
         Car = name;
         time = duration;
+        Debug.Log(duration);
         reward = points;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void showValues()
     {
         carTxt.text = "Car type: " + Car;
         rewardTxt.text = "Reward: " + reward.ToString() + " points.";
+    }
+
+    public void acceptJob()
+    {
+        if (player.GetComponent<JobController>().inJob == false)
+        {
+            Debug.Log("Job assigned");
+            Debug.Log(time);          
+            player.GetComponent<JobController>().currentReward = reward;
+            player.GetComponent<JobController>().currentTime = time;
+            player.GetComponent<JobController>().inJob = true;
+            gameObject.GetComponent<Animation>().Play("Paper");
+        }      
+    }
+
+    public void deleteJob()
+    {
+        Destroy(gameObject);
     }
 
     public string getCar() { return Car; }
